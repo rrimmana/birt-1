@@ -15,9 +15,7 @@
 package org.eclipse.birt.data.oda.mongodb.impl;
 
 import java.net.InetAddress;
-import org.eclipse.birt.data.oda.mongodb.nls.Messages;
 import java.util.ArrayList;
-
 import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
@@ -435,17 +433,13 @@ public class MongoDBDriver implements IDriver
 			m_connProperties = new Properties( );
 			for ( String propertyName : connProperties.stringPropertyNames( ) )
 			{
-				System.out.println( "propertyName :: " + propertyName );
-				System.out.println(
-						"connProperties.getProperty( propertyName ) :: "
-								+ connProperties.getProperty( propertyName ) );
 				m_connProperties.setProperty( propertyName,
 						connProperties.getProperty( propertyName ) );
 				
 				if ( propertyName.equals( MONGO_URI_PROP ) )
 				{
 					MongoClientURI mongoUri = getMongoURI( connProperties );
-					if ( mongoUri.getUsername( ) != null )
+					if ( mongoUri != null && mongoUri.getUsername( ) != null )
 					{
 						m_connProperties.setProperty( USERNAME_PROP,
 								mongoUri.getUsername( ) );
